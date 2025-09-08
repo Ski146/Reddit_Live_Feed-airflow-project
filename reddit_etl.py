@@ -13,8 +13,8 @@ def  run_reddit_etl():
     path = r'C:\Users\sijus\OneDrive\Desktop'
     # Authenticate with Reddit API
     reddit = praw.Reddit(
-        client_id="0bw7MkRjxr_i8cy38rVOHQ",
-        client_secret="8iEJW9pz5DtF6dFg2UmlHNmhhq8jQA",
+        AWS_ACCESS_KEY_ID=YOUR_ACCESS_KEY
+        AWS_SECRET_ACCESS_KEY=YOUR_SECRET_KEY
         user_agent="reddit_live_feed_search_app"
     )
 
@@ -22,7 +22,6 @@ def  run_reddit_etl():
     subreddit_name = "Python"
     keyword = "pandas"
 
-    # Keep track of already seen post IDs to avoid duplicates
     seen_posts = []
     found_new = False
 
@@ -58,7 +57,6 @@ def  run_reddit_etl():
 
         s3 = S3FileSystem(anon=False)
         df = pd.DataFrame(seen_posts)
-        # Define S3 path
         s3_path = "s3://siju-etl-project/Python_reddit_p1.csv"
 
     # Upload to S3 with verification
@@ -72,8 +70,6 @@ def  run_reddit_etl():
         print(f"S3 Upload Error: {s3_error}")
         raise
 
-
-        # Wait before polling again (e.g., 30 seconds)
         time.sleep(30)
 
     except Exception as e:
