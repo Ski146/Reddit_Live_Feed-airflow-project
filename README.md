@@ -1,4 +1,4 @@
-# Airflow Reddit Live Feed Project
+# Airflow Reddit Live Feed Project (Dynamic Keyword based)
 
 ## Overview
 - Apache Airflow DAG deployed on an **AWS EC2 instance** to stream Reddit posts live.
@@ -7,7 +7,7 @@
 ## Architecture
 1. EC2 instance runs Airflow standalone.
 2. DAG fetches live Reddit posts using PRAW.
-3. Posts are processed and stored in an S3 bucket (`my-bucket-name`).
+3. Posts are processed and stored in an S3 bucket.
 
 ## How to Run
 1. Clone repo
